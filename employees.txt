@@ -1,0 +1,12 @@
+in Employees Table:
+id (primary key, integer)
+employee_id (string, unique)
+name (string),
+designation (string),
+department (string),
+date of joining (date),
+deleted_at (datetime, nullable)
+dismissed_at (datetime, nullable)
+
+- make a create page
+- make a list page (action: edit, delete) when clicked on edit its open a modal with the employee details, and when click delete its also a delete modal with a yes no button.

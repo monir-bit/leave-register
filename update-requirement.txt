@@ -1,0 +1,30 @@
+in leave_types table theire neeed another column for amount_of_days (mane total ei leave type er kotogulu leave nite parbe)
+- update migration, model, ui, controller validation request.
+
+and if leave register their need their need also total counting avalilable employee leave like applied also need in report.
+calculation logic is based on employee joining date.
+- if employee join date in septembar tahole tar total month holo sep, oct, nov, dec = 4 month , formula: (12/amount_of_days) * 4, result must need nearest integer.
+- if some employee join date march, but he resigned/terminated in november their month total march-to-nov is 9, formula: (12/amount_of_days) * 9.
+- so you need also relation with employees dismissed_at column for get available leave
+
+note: its just a calculation for showing in report. and this is yearly calculation, each year employee leave and applied start from new.
+
+
+
+--------------------------------------------------
+
+another things:
+make a another table: `employee_leave_balances` here
+id primary
+leave_type_id foreign key with leave_types
+employee_id foreign_key with employees
+balance_in_days int
+year, number like (2026, 2027, 2028)
+
+ei manual entry dibe bosor sesh a hisab kore kun bosore koto leave balance ase employee wise employee list a ekti button jukto koro show balances ekhane click korar por employee er leave balance dekhte pabe year onuzai,
+
+ekhon asole report a arekti hisab jukto hobe.
+jodi purboborti year gulu te tar leave available thake tahole segulu leave onuzayi jug hoye total available leave dekhabe.
+
+
+so based on this please update report, employees, leave type etc. do it properly

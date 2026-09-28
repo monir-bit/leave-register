@@ -1,0 +1,17 @@
+table: leave_registers
+id: (primary key, integer)
+employee_id: (foreign key, references employees.employee_id)
+leave_type_id: (foreign key, references leave_types.id)
+from_date: (date)
+to_date: (date)
+days: (integer)
+reason: (string) nullable
+
+---
+- make model and migration for leave_registers table
+- make a create page for leave registers
+- make a list page for leave registers with action buttons for edit and delete
+- When clicked on edit, it should open a modal with the leave register details pre-filled for editing.
+- When clicked on delete, it should open a confirmation modal with a yes/no button to confirm
+- for select employe dropdown use select2 and fetch the employee names from the employees table
+- for select leave type dropdown use select2 and fetch the leave types from the leave_types table

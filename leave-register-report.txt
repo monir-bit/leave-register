@@ -1,0 +1,32 @@
+Employee wise Leave Register Report
+
+Page Size: A4
+Margin: 1Inch
+Orientation: Portrait
+Also Need Bangla Support
+use dompdf
+------------------------------- Layout ---------------------------------------------------------------------
+
+                                            Ananda Bazar Midea Limited
+                                            Leave Register Report
+
+Employee Name: ____________________________________________________________________________________________
+Designation: _______________________ Deparment: _______________________ Joining Date: _____________________
+
+Leave Applied IN Days (bold)
+Years: _____________
+Leave Types (Loop and count), like : Casual Leave: 5, Sick Leave: 3, Earned Leave: 2, etc.
+
+Now Make a table with the following columns: Yearly only
+Year | Month | Leave Type   | From Date  | To Date    | Days | Reason
+2026 | Jan   | Casual Leave | 01-01-2026 | 05-01-2026 | 03   | Family Function
+
+Loop through the leave_registers data and populate the table with the corresponding values.
+
+make a another menu Generate Report,  here two input show employees (use select two) and select year (current year dfault select: 2026) then clik generate button its shoing report first then report download
+Generate Report Page:
+
+Emplyees Dropdown | Year Dropdown Button 2026 - 2030 | Show Report (Button) | Print Report
+
+
+
