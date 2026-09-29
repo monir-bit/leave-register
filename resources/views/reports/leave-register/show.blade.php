@@ -12,12 +12,14 @@
             <h5 class="mb-0">{{ $employee->name }} ({{ $employee->employee_id }}) &mdash; {{ $year }}</h5>
 
             <div class="d-flex gap-2">
-                <a
-                    href="{{ route('reports.leave-register.download', ['employee_id' => $employee->employee_id, 'year' => $year]) }}"
+                <button
+                    type="button"
+                    id="printReportBtn"
                     class="btn btn-primary"
+                    data-print-url="{{ route('reports.leave-register.print', ['employee_id' => $employee->employee_id, 'year' => $year]) }}"
                 >
                     <i class="bx bx-printer"></i> Print Report
-                </a>
+                </button>
                 <a href="{{ route('reports.leave-register.create') }}" class="btn btn-outline-secondary">
                     <i class="bx bx-arrow-back"></i> Back
                 </a>
@@ -102,4 +104,33 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('page-js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('printReportBtn').addEventListener('click', function () {
+                var printUrl = this.getAttribute('data-print-url');
+
+                var iframe = document.getElementById('printFrame');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.id = 'printFrame';
+                    iframe.style.position = 'fixed';
+                    iframe.style.right = '0';
+                    iframe.style.bottom = '0';
+                    iframe.style.width = '0';
+                    iframe.style.height = '0';
+                    iframe.style.border = 'none';
+                    document.body.appendChild(iframe);
+                }
+
+                iframe.onload = function () {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                };
+                iframe.src = printUrl;
+            });
+        });
+    </script>
 @endsection

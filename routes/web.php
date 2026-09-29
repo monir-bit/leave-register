@@ -52,4 +52,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/reports/leave-register', [ReportController::class, 'create'])->name('reports.leave-register.create');
     Route::get('/reports/leave-register/show', [ReportController::class, 'show'])->name('reports.leave-register.show');
     Route::get('/reports/leave-register/download', [ReportController::class, 'download'])->name('reports.leave-register.download');
+    Route::get('/reports/leave-register/print', [ReportController::class, 'print'])->name('reports.leave-register.print');
 });

@@ -42,7 +42,7 @@
                     <button type="submit" formaction="{{ route('reports.leave-register.show') }}" class="btn btn-primary">
                         <i class="bx bx-show"></i> Show Report
                     </button>
-                    <button type="submit" formaction="{{ route('reports.leave-register.download') }}" class="btn btn-outline-primary">
+                    <button type="button" id="printReportBtn" class="btn btn-outline-primary">
                         <i class="bx bx-printer"></i> Print Report
                     </button>
                 </div>
@@ -57,6 +57,36 @@
         document.addEventListener('DOMContentLoaded', function () {
             $('.select2').select2({
                 width: '100%',
+            });
+
+            document.getElementById('printReportBtn').addEventListener('click', function () {
+                var form = document.getElementById('reportForm');
+
+                if (!form.reportValidity()) {
+                    return;
+                }
+
+                var params = new URLSearchParams(new FormData(form)).toString();
+                var printUrl = '{{ route('reports.leave-register.print') }}' + '?' + params;
+
+                var iframe = document.getElementById('printFrame');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.id = 'printFrame';
+                    iframe.style.position = 'fixed';
+                    iframe.style.right = '0';
+                    iframe.style.bottom = '0';
+                    iframe.style.width = '0';
+                    iframe.style.height = '0';
+                    iframe.style.border = 'none';
+                    document.body.appendChild(iframe);
+                }
+
+                iframe.onload = function () {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                };
+                iframe.src = printUrl;
             });
         });
     </script>

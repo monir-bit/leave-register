@@ -46,6 +46,17 @@ class ReportController extends Controller
         ])->setPaper('a4', 'portrait')->download('leave-register-report.pdf');
     }
 
+    public function print(Request $request): Response
+    {
+        $data = $this->reportData($request);
+
+        return Pdf::loadView('reports.leave-register.pdf', [
+            ...$data,
+            'banglaFontRegular' => $this->fontDataUri('HindSiliguri-Regular.ttf'),
+            'banglaFontBold' => $this->fontDataUri('HindSiliguri-Bold.ttf'),
+        ])->setPaper('a4', 'portrait')->stream('leave-register-report.pdf');
+    }
+
     private function reportData(Request $request): array
     {
         $validated = $request->validate([
