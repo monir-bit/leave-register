@@ -6,7 +6,7 @@
     <style>
         @page {
             size: A4 portrait;
-            margin: 1in;
+            margin: 1in 1in 1.5in 1in;
         }
 
         @font-face {
@@ -75,8 +75,9 @@
         table.report-table th,
         table.report-table td {
             border: 1px solid #000;
-            padding: 4px 6px;
+            padding: 1px 6px;
             font-size: 10px;
+            line-height: 1.2;
             text-align: left;
         }
 
@@ -84,10 +85,37 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
+
+        .hr-sign-footer {
+            position: fixed;
+            bottom: -0.5in;
+            right: 0;
+            width: 160px;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .hr-sign-footer .sign-space {
+            height: 24px;
+        }
+
+        .hr-sign-footer .sign-line {
+            border-top: 1px solid #000;
+        }
+
+        .hr-sign-footer .sign-label {
+            margin-top: 2px;
+        }
     </style>
 </head>
 <body>
-    <div class="text-center company-name">Ananda Bazar Media Limited</div>
+    <div class="hr-sign-footer">
+        <div class="sign-space">&nbsp;</div>
+        <div class="sign-line"></div>
+        <div class="sign-label">HR Concern Sign</div>
+    </div>
+
+    <div class="text-center company-name">AnandaBazar Media Limited</div>
     <div class="text-center report-title">Leave Register Report</div>
 
     <div class="field-row">
