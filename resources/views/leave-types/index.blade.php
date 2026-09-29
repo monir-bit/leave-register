@@ -28,6 +28,7 @@
                     @foreach ($leaveTypes as $leaveType)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>
+                                <span class="badge bg-label-secondary me-1">{{ $leaveType->position }}</span>
                                 {{ $leaveType->name }}
                                 <span class="text-muted">&mdash; {{ $leaveType->amount_of_days }} days/year</span>
                             </span>
@@ -41,6 +42,7 @@
                                 data-id="{{ $leaveType->id }}"
                                 data-name="{{ $leaveType->name }}"
                                 data-amount_of_days="{{ $leaveType->amount_of_days }}"
+                                data-position="{{ $leaveType->position }}"
                             >
                                 <i class="bx bx-edit-alt"></i>
                             </button>
@@ -89,6 +91,23 @@
                                 placeholder="10"
                             />
                             @error('amount_of_days')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="position">Position</label>
+                            <input
+                                type="number"
+                                min="0"
+                                class="form-control @error('position') is-invalid @enderror"
+                                id="position"
+                                name="position"
+                                value="{{ old('position', 0) }}"
+                                placeholder="0"
+                            />
+                            <div class="form-text">Controls the display order of this leave type (lower shows first).</div>
+                            @error('position')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
@@ -143,6 +162,21 @@
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="edit_position">Position</label>
+                            <input
+                                type="number"
+                                min="0"
+                                class="form-control @error('position') is-invalid @enderror"
+                                id="edit_position"
+                                name="position"
+                            />
+                            <div class="form-text">Controls the display order of this leave type (lower shows first).</div>
+                            @error('position')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -164,6 +198,7 @@
                 document.getElementById('edit_leave_type_id').value = button.getAttribute('data-id');
                 document.getElementById('edit_name').value = button.getAttribute('data-name');
                 document.getElementById('edit_amount_of_days').value = button.getAttribute('data-amount_of_days');
+                document.getElementById('edit_position').value = button.getAttribute('data-position');
             });
 
             @if ($errors->any())
@@ -172,6 +207,7 @@
                     document.getElementById('edit_leave_type_id').value = '{{ old('leave_type_id') }}';
                     document.getElementById('edit_name').value = '{{ old('name') }}';
                     document.getElementById('edit_amount_of_days').value = '{{ old('amount_of_days') }}';
+                    document.getElementById('edit_position').value = '{{ old('position') }}';
                     new bootstrap.Modal(editModal).show();
                 @else
                     new bootstrap.Modal(document.getElementById('createLeaveTypeModal')).show();

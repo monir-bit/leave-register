@@ -22,7 +22,7 @@ class EmployeeLeaveBalanceController extends Controller
         return view('employees.leave-balances.index', [
             'employee' => $employee,
             'leaveBalances' => $leaveBalances,
-            'leaveTypes' => LeaveType::orderBy('name')->get(['id', 'name']),
+            'leaveTypes' => LeaveType::orderBy('position')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 

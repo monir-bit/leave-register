@@ -17,9 +17,10 @@ class UpdateLeaveTypeRequest extends FormRequest
         return [
             'name' => [
                 'required', 'string', 'max:255',
-                Rule::unique('leave_types', 'name')->ignore($this->route('leave_type')),
+                Rule::unique('leave_types', 'name')->ignore($this->route('leaveType')),
             ],
             'amount_of_days' => ['required', 'integer', 'min:1'],
+            'position' => ['nullable', 'integer', 'min:0'],
         ];
     }
 }

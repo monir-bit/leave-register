@@ -80,7 +80,7 @@ class ReportController extends Controller
             ->groupBy('leave_type_id')
             ->map(fn ($group) => $group->sum('balance_in_days'));
 
-        return LeaveType::orderBy('name')->get()->map(function (LeaveType $leaveType) use ($employee, $year, $appliedByType, $carriedForwardByType) {
+        return LeaveType::orderBy('position')->orderBy('name')->get()->map(function (LeaveType $leaveType) use ($employee, $year, $appliedByType, $carriedForwardByType) {
             $applied = $appliedByType->get($leaveType->id, 0);
             $availableThisYear = $this->leaveEntitlementService->calculateAvailableDays($employee, $leaveType, $year);
             $carriedForward = $carriedForwardByType->get($leaveType->id, 0);

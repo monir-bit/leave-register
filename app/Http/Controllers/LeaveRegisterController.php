@@ -43,7 +43,7 @@ class LeaveRegisterController extends Controller
             'perPageOptions' => self::PER_PAGE_OPTIONS,
             'search' => $search,
             'employees' => Employee::orderBy('name')->get(['employee_id', 'name']),
-            'leaveTypes' => LeaveType::orderBy('name')->get(['id', 'name']),
+            'leaveTypes' => LeaveType::orderBy('position')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 
@@ -51,7 +51,7 @@ class LeaveRegisterController extends Controller
     {
         return view('leave-registers.create', [
             'employees' => Employee::orderBy('name')->get(['employee_id', 'name']),
-            'leaveTypes' => LeaveType::orderBy('name')->get(['id', 'name']),
+            'leaveTypes' => LeaveType::orderBy('position')->orderBy('name')->get(['id', 'name']),
         ]);
     }
 

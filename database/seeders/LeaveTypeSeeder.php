@@ -14,15 +14,15 @@ class LeaveTypeSeeder extends Seeder
     public function run(): void
     {
         $leaveTypes = [
-            'Casual Leave' => 10,
-            'Medical Leave' => 14,
-            'Earn Leave' => 12,
-            'Matrimonial Leave' => 3,
-            'Others' => 5,
+            'Casual Leave' => ['amount_of_days' => 10, 'position' => 1],
+            'Medical Leave' => ['amount_of_days' => 14, 'position' => 2],
+            'Earned Leave' => ['amount_of_days' => 12, 'position' => 3],
+            'Maternity Leave' => ['amount_of_days' => 3, 'position' => 4],
+            'Others' => ['amount_of_days' => 5, 'position' => 5],
         ];
 
-        foreach ($leaveTypes as $name => $amountOfDays) {
-            LeaveType::updateOrCreate(['name' => $name], ['amount_of_days' => $amountOfDays]);
+        foreach ($leaveTypes as $name => $attributes) {
+            LeaveType::updateOrCreate(['name' => $name], $attributes);
         }
     }
 }

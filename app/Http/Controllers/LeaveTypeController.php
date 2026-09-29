@@ -12,7 +12,7 @@ class LeaveTypeController extends Controller
 {
     public function index(): View
     {
-        $leaveTypes = LeaveType::orderBy('name')->get();
+        $leaveTypes = LeaveType::orderBy('position')->orderBy('name')->get();
 
         return view('leave-types.index', [
             'leaveTypes' => $leaveTypes,

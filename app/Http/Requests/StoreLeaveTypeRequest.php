@@ -16,6 +16,7 @@ class StoreLeaveTypeRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', 'unique:leave_types,name'],
             'amount_of_days' => ['required', 'integer', 'min:1'],
+            'position' => ['nullable', 'integer', 'min:0'],
         ];
     }
 }
